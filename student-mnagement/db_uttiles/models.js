@@ -6,7 +6,7 @@ class Helper {
          const query = `
                 SELECT COUNT(*) AS count 
                 FROM information_schema.tables 
-                WHERE table_schema = 'school_management' AND table_name = 'schools';
+                WHERE table_schema = 'sql12727733' AND table_name = 'schools';
             `;
          db.query(query, (error, results) => {
             if (error) {
@@ -46,8 +46,10 @@ class Helper {
    async insertData(name, address, latitude, longitude) {
       try {
          const tableExists = await this.checkTableExists();
+         console.log("jjjjjj", tableExists)
 
-         if (tableExists) {
+         if (!tableExists) {
+            console.log("hi")
             await this.createTable();
          }
 
